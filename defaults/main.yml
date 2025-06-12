@@ -1,0 +1,6 @@
+---
+vector_config_path: "/etc/vector/vector.toml"
+clickhouse_database: logs
+clickhouse_table: system_logs
+clickhouse_http_host: "{{ hostvars['db-clickhouse']['ansible_host'] }}"
+clickhouse_http_port: 8123

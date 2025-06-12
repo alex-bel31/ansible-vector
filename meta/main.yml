@@ -1,0 +1,17 @@
+galaxy_info:
+  author: Novitskii Vladimir
+  description: Ansible role for installation and customization Vector
+  min_ansible_version: 2.9
+  platforms:
+    - name: Debian
+      versions:
+        - buster
+        - bullseye
+        - bookworm
+    - name: Ubuntu
+      versions:
+        - focal
+        - jammy
+        - kinetic
+
+dependencies: []
