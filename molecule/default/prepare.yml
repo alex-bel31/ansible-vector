@@ -1,0 +1,9 @@
+---
+- name: Install Python
+  hosts: all
+  become: false
+  tasks:
+    - name: Install Python 3
+      package:
+        name: python3
+        state: present
