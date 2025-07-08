@@ -1,0 +1,33 @@
+---
+- name: Verify Vector role
+  hosts: all
+  become: false
+  gather_facts: false
+  tasks:
+    - name: Check if vector binary is installed
+      ansible.builtin.command: vector --version
+      register: vector_version
+      changed_when: false
+      failed_when: vector_version.rc != 0
+
+    - name: Check vector config validity
+      ansible.builtin.command: vector validate --skip-healthchecks /etc/vector/vector.toml
+      register: config_check
+      changed_when: false
+      failed_when: config_check.rc != 0
+
+    - name: Ensure vector process is running
+      ansible.builtin.shell: pgrep -f "vector"
+      register: vector_process
+      changed_when: false
+      failed_when: vector_process.rc != 0
+
+    - name: Get vector logs for errors
+      ansible.builtin.shell: |
+        if [ -f /var/log/vector.log ]; then
+          grep -i error /var/log/vector.log || true
+        else
+          ps -ef | grep vector || true
+        fi
+      register: vector_logs
+      changed_when: false

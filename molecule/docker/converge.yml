@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include ansible-05-testing"
+      include_role:
+        name: "ansible-05-testing"
