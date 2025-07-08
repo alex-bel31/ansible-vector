@@ -1,0 +1,7 @@
+molecule==3.6.1
+molecule-docker
+ansible==6.7.0
+ansible-core==2.13.10
+ansible-compat<1.5
+click==8.1.7
+yamllint
